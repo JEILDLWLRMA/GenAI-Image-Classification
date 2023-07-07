@@ -1,0 +1,11 @@
+DIRECTORY:
+  dataset: /data/kminsu0916/dataset/test/images
+  sample_submission_path : /data/kminsu0916/dataset/test/sample_submission.csv
+
+TRAIN:
+  train_serial: '20230705_225004'
+  batch_size: 32
+
+PREDICT:
+  seed: 42
+  gpu: 0

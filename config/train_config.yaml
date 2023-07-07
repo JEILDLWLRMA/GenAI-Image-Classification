@@ -1,0 +1,53 @@
+DIRECTORY:
+  dataset: /data/ysdoh0209/repos/baseline/train
+
+TRAINER :
+  model: vit
+  optimizer: adam
+  learning_rate: 5.0e-8
+  loss: bce
+  metric:
+    - accuracy
+    - f1macro
+  n_epochs: 20
+  early_stopping_target: val_accuracy
+  early_stopping_patience: 5
+  early_stopping_mode: max
+  amp: False
+  gpu: 0
+  seed: 42
+
+MODEL:
+  effnet:
+    backbone: efficientnet_b0
+    n_out: 1
+    is_sigmoid: True
+  vgg16:
+    #backbone: vgg16
+    n_out: 1
+    is_sigmoid: True
+  swinv2:
+    pretrained: True
+  vit:
+    pretrained: True
+
+
+DATASET:
+  val_size : 0.3
+
+DATALOADER:
+  batch_size: 64
+  num_workers: 1
+  shuffle: True
+  pin_memory: True
+  drop_last: True
+
+LOGGER:
+  debug : False
+  wandb: False
+  logging_interval: 100
+  plot:
+    - loss
+    - accuracy
+    - f1macro
+    - elapsed_time
